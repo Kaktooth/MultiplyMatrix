@@ -18,11 +18,11 @@ namespace ConsoleApp54
             double[,] matrix2 = CreateMatrix();
             MyMatrix mymatrix = new MyMatrix(matrix);
             
-            ShowMatrix( mymatrix.GetMatrix());
+            ShowOneMatrix( mymatrix.GetMatrix());
             MyMatrix mymatrix2 = new MyMatrix(matrix2);
             ShowMatrix(mymatrix2.GetMatrix());
             MyMatrix mat = mymatrix * mymatrix2;
-            ShowMatrix(mat.GetMatrix());
+            ShowOneMatrix(mat.GetMatrix());
         }
         public static void ShowMatrix(double[,] matrix)
         {
@@ -37,6 +37,26 @@ namespace ConsoleApp54
                 {
 
                     Console.Write(matrix[i, j] + " ");
+
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.ReadLine();
+        }
+        public static void ShowOneMatrix(double[,] matrix)
+        {
+            if (matrix == null)
+            {
+                return;
+            }
+            Console.WriteLine();
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+
+                    Console.WriteLine(matrix[i, j] + " ");
 
                 }
                 Console.WriteLine();
@@ -154,7 +174,7 @@ namespace ConsoleApp54
         }
         public MyMatrix(double[,] matrix)
         {
-
+            Matrix = new double[matrix.GetLength(0), matrix.GetLength(1)];
             Matrix = matrix;
         }
         public MyMatrix(double[][] matrix)
@@ -189,6 +209,7 @@ namespace ConsoleApp54
                 });
                 Console.WriteLine();
             });
+            
             MyMatrix matrix = new MyMatrix(array);
             return matrix;
         }
@@ -222,6 +243,7 @@ namespace ConsoleApp54
                 }
                 resarray[0, i] = sum;
             }
+            //resarray[0, resarray.GetLength(1)] = 1;
             MyMatrix matrix = new MyMatrix(resarray);
             return matrix;
         }
